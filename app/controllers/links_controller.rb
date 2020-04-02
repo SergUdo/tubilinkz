@@ -1,7 +1,3 @@
-# Main links controller: creates and runs all the links
-#
-# (c) goodprogrammer.ru
-#
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:open, :new, :create]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
@@ -9,7 +5,6 @@ class LinksController < ApplicationController
   before_action :set_shortlink, only: [:open]
 
   def open
-    # increment clicks counter — in an atomic/thread-safe way
     Link.increment_counter(:clicks, @link.id)
     redirect_to @link.url, status: :moved_permanently
   end
