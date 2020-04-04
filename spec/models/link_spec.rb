@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Link, type: :model do
   context 'Unique name specs' do
-    let(:link) {Link.create!(url: 'goodprogrammer.ru')}
+    let(:link) {Link.create!(url: 'google.com')}
 
     it 'fails gracefully after 5 attempts' do
       allow(Link).to receive(:random_token).and_return('very_random_string')
       link
 
-      bad_link = Link.create(url: 'goodprogrammer.ru')
+      bad_link = Link.create(url: 'google.com')
       expect(bad_link.name).to be_nil
       expect(bad_link).not_to be_persisted
       expect(bad_link.errors).to include(:name)
@@ -41,8 +41,8 @@ RSpec.describe Link, type: :model do
     end
 
     it 'Auto adds http:// to :url' do
-      expect(link.url).to eq 'http://goodprogrammer.ru'
-      link.url = 'www.ya.ru/s=goodprogrammer'
+      expect(link.url).to eq 'http://google.com'
+      link.url = 'www.ya.ru/s=google'
       expect(link.save).to be_truthy
       expect(link.url).to eq 'http://www.ya.ru/s=goodprogrammer'
     end
@@ -74,8 +74,8 @@ RSpec.describe Link, type: :model do
   it {should_not allow_value('example.com/?stuff=true').for(:domain)}
   it {should_not allow_value('sub.domain.my-example.com/path/to/file/hello.html').for(:domain)}
   it {should allow_value('sub.example.com').for(:domain)}
-  it {should allow_value('l.goodprogrammer.ru').for(:domain)}
-  it {should allow_value('GOODPROGRAMMER.ru').for(:domain)}
+  it {should allow_value('l.google.com').for(:domain)}
+  it {should allow_value('google.com').for(:domain)}
 
   it {should belong_to(:user)}
 end

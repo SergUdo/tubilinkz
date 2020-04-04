@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) {User.create!(email: 'test@test.ru', password: '123456')}
-  let(:valid_link_attributes) {{'url' => 'l.goodprogrammer.ru'}}
+  let(:valid_link_attributes) {{'url' => 'l.google.com'}}
 
   before(:each) {sign_in user}
 

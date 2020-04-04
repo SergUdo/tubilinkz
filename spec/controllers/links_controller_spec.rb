@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe LinksController, type: :controller do
   let(:user) {User.create!(email: 'test@test.ru', password: '123456')}
-  let(:valid_attributes) {{'url' => 'l.goodprogrammer.ru'}}
-  let(:invalid_attributes) {{'url' => '/l.goodprogrammer.ru'}}
+  let(:valid_attributes) {{'url' => 'l.google.com'}}
+  let(:invalid_attributes) {{'url' => '/l.google.com'}}
   let(:link) {Link.create!(valid_attributes)}
 
   describe 'GET #open' do
